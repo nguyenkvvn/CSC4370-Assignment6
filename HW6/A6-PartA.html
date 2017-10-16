@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Assignment 6: Part 2 - Main Page</title>
+
+<script>
+//begin JavaScript section	
+	
+//prompt the user for the number of employees
+	var number = prompt("Enter the number of eomployees on payroll:");
+	
+//print a table of three columns;
+	var HTMLTable = "<table><strong><tr><td>Employee ID</td><td>Hours Worked</td><td>Wage</td></tr></strong>";
+	//column A is the index
+	//second column is the number of hours work
+	//third column is the wage
+	for (i = 0; i < number; i++)
+	{
+		HTMLTable = HTMLTable + "<tr><td>" + i + "</td><td>40</td><td>$15.00/hr</td><tr>";
+	}
+	HTMLTable = HTMLTable + "</table>"
+</script>
+
+</head>
+
+<body>
+  <h1>Part A - Payroll Report Part 2</h1>
+  <p id = "table"></p>
+  <script>document.getElementById("table").innerHTML = HTMLTable;</script>
+</body>
+
+</html>
