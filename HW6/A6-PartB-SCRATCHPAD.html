@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A6-PartB-SCRATCHPAD.html</title>
+<link href="A6-PartB.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<a><!--- Guess Range Prompt --->
+			<td>Enter your guessing range here:
+			<form name="SetGuess">
+				<br>Starting from: <input type=text name=lowGuess size = 10>
+				<br>Ending at: <input type=text name=hiGuess size=10>
+				<br><input type=button value="Submit range" onclick="submitRange()">
+			</form>
+			</td>
+			<!--- Attempting a guess --->
+			<td>So what's your guess?
+			<form name="GetGuess">
+				<br><input type=text name=myGuess size=10>
+				<br><input type=button value="This is my guess" onclick="submitGuess()">
+			</form>
+			</td>
+			<!--- Guess attempt high --->
+			<td>
+				Your guess is higher. You have <strong>${tries}</strong> left.
+				<br><input type=button value="Let me try again." onclick="tryAgain()">
+			</td>
+			<!--- Guess attempt low --->
+			<td>
+				Your guess is lower. You have <strong>${tries}</strong> left.
+				<br><input type=button value="Let me try again." onclick="tryAgain()">
+			</td>
+			<!--- Guess attempt correct --->
+			<td>
+				You got it right with <strong>${tries}</strong> left.
+				<br><input type=button value="Let's play again." onclick="newGame()">
+			</td>
+			<!--- Out of guesses --->
+			<td>
+				Sorry, you ran out of tries. The number was <strong>${tries}</strong>.
+				<br><input type=button value="Let's play again." onclick="newGame()">
+			</td>
+</a>
+</body>
+</html>

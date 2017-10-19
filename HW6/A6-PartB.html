@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Assignment 6: Part B - Number Guessing Game</title>
+
+<script>
+//begin JavaScript section
+	var targetNumber;
+	var guessCount;
+	var guessLimit = 3;
+	
+	var gameInProgress = false;
+	
+	var lowGuess;
+	var hiGuess;
+	
+	//This function is used to start the game logic with beginning with submitting a range
+	function newGame()
+	{
+		//reset the game
+		gameInProgress = true;
+		guessCount = 0;
+		targetNumber = Math.floor(Math.random()*(hiGuess-lowGuess+1)+lowGuess);
+	}
+	
+	function submitRange()
+	{
+		lowGuess = document.SetGuess.lowGuess.value;
+		hiGuess = document.SetGuess.hiGuess.value;
+		
+		//alert("does this even work");
+		//document.getElementById("statusMessage").innerHTML = "testing";
+		//document.getElementById("statusMessage").innerHTML = document.GetGuessForm.myGuess.value + " " + targetNumber;
+		document.getElementById("statusMessage").innerHTML = "Let's play! Enter your guess below, or press \"Submit Range\" to start a new game.";
+		newGame();
+	}
+	
+	//[LOOP] This function is used submitting a guess.
+	function submitGuess()
+	{	
+		//document.getElementById("statusMessage").innerHTML = "testing";
+		if (gameInProgress == false)
+		{
+			document.getElementById("statusMessage").innerHTML = "There is no game in progress! Start a new game before submitting a guess.";
+		}
+		else
+		{
+				//increment the guess count
+			guessCount++;
+
+			//if the guess is equal to the target number
+			if (document.GetGuessForm.myGuess.value == targetNumber)
+			{
+				//then display the win html
+				document.getElementById("statusMessage").innerHTML = "You guessed correctly in " + guessCount + " tries!";
+
+				gameInProgress = false;
+			}
+			else
+			//otherwise, continue checking logic
+			{
+				//if the player has run out of guesses
+				if (guessCount == guessLimit)
+				{
+					//display the lose html
+					document.getElementById("statusMessage").innerHTML = "You ran out of tries. The number was " + targetNumber + ".";
+
+					gameInProgress = false;
+				}
+				//otherwise, tell the user if they guessed low or high
+				else
+				{
+					if (document.GetGuessForm.myGuess.value < targetNumber)
+					{
+						//guess is too low
+						var GuessesLeft = guessLimit - guessCount;
+						document.getElementById("statusMessage").innerHTML = "Your guess is lower than the target. You have " + guessCount + " out of " + guessLimit + " tries left.";
+
+					}
+					else if (document.GetGuessForm.myGuess.value > targetNumber)
+					{
+						//guess is too high
+						var GuessesLeft = guessLimit - guessCount;
+						document.getElementById("statusMessage").innerHTML = "Your guess is higher than the target. You have " + guessCount + " out of " + guessLimit + " tries left.";
+					}
+				}
+			}
+		}
+	}
+	
+</script>
+
+<link href="A6-PartB.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <h1>Part B - Number Guessing Game</h1>
+  <table>
+  	<tr><th colspan="1">The Web Programming Class Number Guesing Game!</th></tr>
+		<tr>
+			<td width="220px"><strong>How to play:</strong> Enter a number with the range you picked, then press "Guess". The game will tell you whether your guess is higher or lower than the number. You have three guesses!</td>
+			
+		</tr>
+		<tr id = "gameBoard">
+			<td id = "rangeSubmitForm">
+				Enter your guessing range here:
+				<form name="SetGuess">
+					<br>Starting from: <input type="text" name="lowGuess" size = "10">
+					<br>Ending at: <input type="text" name="hiGuess" size="10">
+					<br><input type="button" value="Submit range" onclick="submitRange()">
+				</form>
+			</td>
+	  </tr>
+	  <tr>
+		<td>
+				<div id = "statusMessage">
+
+				</div>
+			  <form name="GetGuessForm">
+					<br>So what's your guess?
+					<br><input type="text" name="myGuess" size="10">
+					<br><input type="button" value="This is my guess" onclick="submitGuess()">
+		  </form>
+			</td>
+		
+		</tr>
+  </table>
+  
+</body>
+
+</html>
